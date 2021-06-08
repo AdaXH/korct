@@ -1,0 +1,9 @@
+{
+  "extends": "eslint-config-umi",
+  "rules": {
+    "no-throw-literal": "off",
+    "no-unused-expressions": "off",
+    // hack for ts eslint bug
+    "no-undef": "warn"
+  }
+}

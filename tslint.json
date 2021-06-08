@@ -1,0 +1,18 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {},
+    "rulesDirectory": [],
+    "linterOptions": {
+        "exclude": [
+            "./dist/*",
+            "./test/**/*.js",
+            "./*.js",
+            "server.ts",
+            "jest.config.js"
+        ]
+    }
+}

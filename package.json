@@ -10,7 +10,10 @@
     "lint": "eslint -c .eslintrc.json --ext **/*.ts",
     "build": "tsc && tsc-alias",
     "dev": "npm-run-all --parallel server web-server",
-    "web-server": "cd web && npm run dev"
+    "web-server": "cd web && npm run dev",
+    "init": "npm i npm-run-all && npm-run-all --parallel install-server install-web",
+    "install-server": "cnpm install",
+    "install-web": "cd web && cnpm install"
   },
   "jest": {
     "extensionsToTreatAsEsm": [

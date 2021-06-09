@@ -1,4 +1,7 @@
 const request = require('supertest');
+import preTest from '../__jest__/jestKooks';
+
+preTest();
 
 describe('Demo controller', () => {
   test('GET /user/1234', done => {
@@ -12,7 +15,6 @@ describe('Demo controller', () => {
         expect(response.body.success).toEqual(true);
         expect(response.body.data.userId).toBe('1234');
         done();
-      })
-      .catch(err => done(err));
+      });
   });
 });

@@ -15,11 +15,12 @@ import { IncomingMessage, ServerResponse } from 'http';
 
 export class Server extends Application {
   private config: ServerConfig;
-  private app: Application;
+  public app: Application;
   private controllers: unknown[];
   private router: Router = new Router();
   private plugins: VoidFunction[];
   private middlewares: Promise<VoidFunction>[];
+  public server: any;
 
   constructor(config: ServerConfig) {
     super();
@@ -81,17 +82,23 @@ export class Server extends Application {
    */
   async startServer(): Promise<void> {
     const processInstance = new Process();
-
-    if (getEnv() === ENV.DEV) {
+    const env = getEnv();
+    if (env === ENV.DEV) {
       processInstance.setMaxProcess(1);
     }
-
+    // 测试环境
+    if (env === ENV.JEST) {
+      await this.init();
+      const { port = 3000 } = this.config.bootConfig[env] || {};
+      this.server = this.app.listen(port);
+      return;
+    }
     processInstance.setCallback(async () => {
       await this.init();
       const { env } = this.app;
-      const { host, port } = this.config.bootConfig[env];
+      const { port } = this.config.bootConfig[env];
       // this.db.connect(host);
-      this.app.listen(port);
+      this.server = this.app.listen(port);
       logger.info(`web server on ${port} at process: ${process.pid}`);
     });
 

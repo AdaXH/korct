@@ -20,4 +20,5 @@ export enum PROCESS_EVENT {
 export enum ENV {
   'DEV' = 'development',
   'PROD' = 'production',
+  'JEST' = '--detectOpenHandles',
 }

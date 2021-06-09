@@ -1,12 +1,18 @@
-import 'tsconfig-paths/register';
 import 'reflect-metadata';
+import 'tsconfig-paths/register';
+import { getEnv, ENV } from './common';
 import { Server } from './class';
 import bootConfig from './config/port';
 
-export const server = new Server({
+const server = new Server({
   controllerPath: `${__dirname}/controller`,
   middlewarePath: `${__dirname}/middleware`,
   rootPath: __dirname,
   bootConfig,
 });
-server.startServer();
+
+if (getEnv() !== ENV.JEST) {
+  server.startServer();
+}
+
+export default server;

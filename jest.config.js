@@ -14,5 +14,10 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
   },
-  globalSetup: '<rootDir>/test/__jest__/globalSetup.ts',
+  // globalSetup: '<rootDir>/test/__jest__/globalSetup.ts',
+  globals: {
+    'ts-jest': {
+      tsconfig: './tsconfig.json',
+    },
+  },
 };

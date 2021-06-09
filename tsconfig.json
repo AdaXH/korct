@@ -72,7 +72,7 @@
     /* Experimental Options */
     "experimentalDecorators": true /* Enables experimental support for ES7 decorators. */,
     "emitDecoratorMetadata": true /* Enables experimental support for emitting type metadata for decorators. */,
-    // "types": ["@types/jest", "jest", "node"],
+    // "types": ["@types/jest", "jest", "node", "@types/reflect-metadata"],
     // "typeRoots": ["./node_modules/@types"],
 
     /* Advanced Options */
@@ -80,5 +80,5 @@
     "skipDefaultLibCheck": true,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
-  "exclude": ["node_modules", "dist", "server.ts", "test/**/*"]
+  "exclude": ["node_modules", "dist", "test/**/*", "web"]
 }

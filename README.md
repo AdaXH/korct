@@ -33,6 +33,7 @@ web优势：
 - [x] 路由注解
 - [x] 多进程
 - [x] 单元测试
+- [ ] 数据库支持，mysql、mongodb
 
 ## 如何使用koact
   ````shell

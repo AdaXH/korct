@@ -1,7 +1,7 @@
 # korct
 
 脚手架：以 koa 为服务端、react 为前端的最佳实践
-![截图](https://bucker-for-sae.oss-cn-hangzhou.aliyuncs.com/githubimg/20210609152619.jpg)
+![截图](https://bucker-for-sae.oss-cn-hangzhou.aliyuncs.com/githubimg/20210609161240.jpg)
 
 ## 简介
 

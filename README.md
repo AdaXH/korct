@@ -14,7 +14,7 @@ Korct: 快速构建以 koa2 为服务端、以 react 为前端的脚手架，开
 #### server 优势：
 
 - 无需为每个 route 执行注册, springBoot式体验：
-  ````js
+````js
   class Test {
     @Autowired()
     private userService: UserService;

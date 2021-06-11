@@ -11,15 +11,83 @@
 
 Korct: 快速构建以 koa2 为服务端、以 react 为前端的脚手架，开箱即用。
 
-server 优势：
+#### server 优势：
 
-- 无需为每个 route 执行注册
+- 无需为每个 route 执行注册, springBoot式体验：
+  ````js
+  class Test {
+    @Autowired()
+    private userService: UserService;
+
+    /**
+     * restful 获取userId
+     * @param userId string
+     */
+    @GetMapping('/user/:userId')
+    async queryUser(@param('userId') userId: string): Promise<CommonObj> {
+      return this.userService.queryUserById(userId);
+    }
+
+    @PostMapping('/add-user')
+    async insertUser(@request() user: CommonObj): Promise<CommonObj> {
+      return this.userService.insertUser(user);
+    }
+  }
+  ````
+  
+  
 - 完整的 log 功能，基于 log4js
-- 完整的单元测试，jest
 
-web 优势：
+ ````js
+  log/xx.log
+  [INFO] 6424f40c-1958-4284-b4d7-5580ed9744ff GET /user/1623415519723 3ms req: {"userId":"1623415519723"} res: {"errorMessage":null,"errorCode":null,"errorStack":null,"data":{"name":"hello","userId":"1623415519723"},"success":true,"traceId":"6424f40c-1958-4284-b4d7-5580ed9744ff","pid":9580}
+ 
+ ````
+ 
+- 完整的单元测试，jest
+````js
+    const request = require('supertest');
+    
+    describe('Demo controller', () => {
+      test('GET /user/1234', done => {
+        request('http://localhost:3000/user')
+          .get('/1234')
+          .set('Accept', 'application/json')
+          .send()
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .then(response => {
+            expect(response.body.success).toEqual(true);
+            expect(response.body.data.userId).toBe('1234');
+            done();
+          })
+          .catch(err => done(err));
+      });
+    });
+````
+
+#### web 优势：
 
 - react 驱动
+````js
+    import React from 'react';
+    import ReactDom from 'react-dom';
+    import Logo from './component/logo';
+    import Demo from './component/demo';
+    import styles from './styles.less';
+    import './global.less';
+    const App: React.FC<any> = () => {
+      return (
+        <div className={styles.box}>
+          <Logo />
+          <Demo />
+        </div>
+      );
+    };
+    ReactDom.render(<App />, document.querySelector('#root'));
+````
+
+ 
 - 可配置的 webpack
 - 集成 less、typescript 等 loader
 
@@ -48,4 +116,11 @@ web 优势：
 npm i korct -g
 
 korct create projectName
+
+cd projectName && npm run init
+
+run dev: 
+npm run dev
+
+run test: npm run test
 ```

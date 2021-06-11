@@ -4,7 +4,7 @@
 
 [![DeepScan grade](https://deepscan.io/api/teams/13594/projects/17523/branches/404425/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13594&pid=17523&bid=404425)
 [![Build Status](https://travis-ci.org/AdaXH/sites-server-ts.svg?branch=main)](https://travis-ci.org/AdaXH/sites-server-ts)
-![NPM download](https://img.shields.io/npm/dt/korct.svg)
+[![NPM download](https://img.shields.io/npm/dt/korct.svg)](https://www.npmjs.com/package/korct)
 ![截图](https://bucker-for-sae.oss-cn-hangzhou.aliyuncs.com/githubimg/20210609161240.jpg)
 
 ## 简介

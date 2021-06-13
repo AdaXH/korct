@@ -11,7 +11,7 @@
 
 - 无需为每个 route 执行注册, springBoot 式体验：
 
-  ```js
+```js
   class UserController {
     /**
      * 依赖注入，注入userService
@@ -39,7 +39,7 @@
       return this.userService.insertUser(user);
     }
   }
-  ```
+```
 
 - 完整的 log 功能，基于 log4js
 

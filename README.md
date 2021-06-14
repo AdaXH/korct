@@ -12,6 +12,7 @@
 - 无需为每个 route 执行注册, springBoot 式体验：
 
 ```js
+  @ApiPrefix('/api)
   class UserController {
     /**
      * 依赖注入，注入userService
@@ -129,7 +130,11 @@ cd projectName && npm run init
 run dev:
 npm run dev
 
-run test: npm run test
+run test:
+npm run test
+
+run build:
+npm run build
 ```
 
 <a href="https://github.com/AdaXH/korct">github</a>

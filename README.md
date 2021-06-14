@@ -12,7 +12,8 @@
 - 无需为每个 route 执行注册, springBoot 式体验：
 
 ```js
-  @ApiPrefix('/api)
+
+  @ApiPrefix('/api')
   class UserController {
     /**
      * 依赖注入，注入userService
@@ -109,6 +110,7 @@ ReactDom.render(<App />, document.querySelector("#root"));
 - class : 运行时启动
 - web : react 前端代码
 - test : 单元测试目录
+- dist : 最终输出目录，打包后的server和web文件
 
 目前已完成的功能/模块：
 

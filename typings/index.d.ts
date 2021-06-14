@@ -21,4 +21,6 @@ interface ServerConfig {
       port?: number | string;
     };
   };
+  staticPath: string;
+  viewPath: string;
 }

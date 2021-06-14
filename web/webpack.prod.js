@@ -7,9 +7,9 @@ module.exports = {
   mode: 'production',
   entry: './src/index.tsx',
   output: {
-    filename: 'koact.js',
+    filename: 'korct.js',
     path: path.resolve(__dirname, 'web-dist'),
-    publicPath: '/',
+    publicPath: '/web-dist',
   },
   resolve: {
     alias: {

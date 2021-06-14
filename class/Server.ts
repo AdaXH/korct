@@ -34,7 +34,7 @@ export class Server extends Application {
 
     this.middlewares = await loadMiddleware(this.config.middlewarePath);
     this.controllers = await loadController(this.config.controllerPath);
-    this.plugins = await loadPlugin(this.app);
+    this.plugins = await loadPlugin(this.app, this.config);
 
     await this.useMiddleware();
     this.registerPlugin();

@@ -12,6 +12,10 @@ export const CTX_META_KEY_PREFIX = 'ctx:';
 
 export const CONTEXT_META_KEY_PREFIX = 'ctx:';
 
+export const RENDER_HTML_META_KEY_PREFIX = 'render_html:';
+
+export const API_PREFIX = 'api_prefix:';
+
 export enum PROCESS_EVENT {
   'CLOSE' = 'CLOSE',
   'RELOAD_DB' = 'RELOAD_DB',

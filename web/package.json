@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --config=webpack.dev.js",
-    "build": "webpack --config=webpack.prod.js --env=production"
+    "build": "webpack --config=webpack.prod.js --env=production && npm run push-static",
+    "push-static": "node rmfile2Koa"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +25,7 @@
     "less": "^4.1.1",
     "less-loader": "^9.0.0",
     "mini-css-extract-plugin": "^1.6.0",
+    "mv": "^2.1.1",
     "source-map-loader": "^3.0.0",
     "style-loader": "^2.0.0",
     "styles-loader": "^2.0.0",

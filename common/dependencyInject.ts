@@ -4,6 +4,8 @@ import {
   QUERY_META_KEY,
   QUERY_ITEM_META_KEY,
   BODY_META_KEY,
+  RENDER_HTML_META_KEY_PREFIX,
+  API_PREFIX,
 } from '.';
 
 type DecratorReturn = (target: unknown, propertyName: string, index?: number) => void;
@@ -12,7 +14,7 @@ type DecratorReturn = (target: unknown, propertyName: string, index?: number) =>
  * 路由反射
  * @param options { method?: string; url?: string }
  */
-export function Controller(options?: { method?: string; url?: string }) {
+export function Controller(options?: { method?: string; url?: string | RegExp }) {
   return (target: unknown, propertyName: string): void => {
     Reflect.defineMetadata(propertyName, options, target);
   };
@@ -37,7 +39,9 @@ export function Autowired(): (target: unknown, propertyKey: string) => void {
  * get
  * @param url string
  */
-export function GetMapping(url: string): (target: unknown, propertyName: string) => void {
+export function GetMapping(
+  url: string | RegExp,
+): (target: unknown, propertyName: string) => void {
   return Controller({ method: 'GET', url });
 }
 
@@ -49,6 +53,18 @@ export function PostMapping(
   url: string,
 ): (target: unknown, propertyName: string) => void {
   return Controller({ method: 'POST', url });
+}
+
+/**
+ * 接口前缀
+ * @param prefix
+ * @returns
+ */
+export function ApiPrefix(prefix: string) {
+  return (target: any) => {
+    Reflect.defineMetadata(API_PREFIX, prefix, target);
+    return target;
+  };
 }
 
 /**
@@ -90,5 +106,18 @@ export function queryItem(queryItemName: string): DecratorReturn {
 export function request() {
   return (target: unknown, propertyName: string, index?: number): void => {
     Reflect.defineMetadata(BODY_META_KEY, index, target[propertyName]);
+  };
+}
+
+/**
+ * 渲染html
+ */
+export function renderHtml() {
+  return (target: unknown, propertyName: string): void => {
+    Reflect.defineMetadata(
+      `${RENDER_HTML_META_KEY_PREFIX}-${propertyName}`,
+      true,
+      target,
+    );
   };
 }

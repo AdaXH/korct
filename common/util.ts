@@ -1,9 +1,11 @@
 import Application, { Context } from 'koa';
 import * as fs from 'fs';
 import BodyParser from 'koa-body';
+import KoaStatic from 'koa-static';
+import KoaViews from 'koa-views';
 import Json from 'koa-json';
 import chalk from 'chalk';
-import { CommonObj } from '@/typings';
+import { CommonObj, ServerConfig } from '@/typings';
 import { CommonResponse } from '@/class';
 import {
   BODY_META_KEY,
@@ -11,7 +13,9 @@ import {
   QUERY_ITEM_META_KEY,
   QUERY_META_KEY,
   logger,
+  RENDER_HTML_META_KEY_PREFIX,
 } from '.';
+import { API_PREFIX } from './constant';
 
 /**
  * 加载controller文件夹
@@ -31,17 +35,21 @@ export async function loadController(controllerPath: string): Promise<unknown[]>
     );
     fnNames.forEach(fn => {
       const { method, url } = Reflect.getMetadata(fn, property);
-      logger.info(`register route: ${chalk.blue(`[${method}]`)} ${chalk.green(url)} `);
+      const prefix = Reflect.getMetadata(API_PREFIX, Controller.default) || '';
+      const targetUrl = `${prefix}${url}`;
+      logger.info(
+        `register route: ${chalk.blue(`[${method}]`)} ${chalk.green(targetUrl)} `,
+      );
       controllers.push({
         method: method.toLowerCase(),
-        url,
+        url: prefix ? targetUrl : url,
         route: async (ctx: Context) => {
           try {
             const {
               params,
               query,
               request: { body },
-              headers: { authorization },
+              // headers: { authorization },
             } = ctx;
             const target = property[fn];
             property.ctx = ctx;
@@ -69,9 +77,18 @@ export async function loadController(controllerPath: string): Promise<unknown[]>
             if (requestIndex >= 0) {
               args[requestIndex] = body;
             }
-            const result: CommonObj = await property[fn](...args);
+            // 是否是渲染html
+            const checkHtml = Reflect.getMetadata(
+              `${RENDER_HTML_META_KEY_PREFIX}-${fn}`,
+              property,
+            );
+            const result: CommonObj | string = await property[fn](...args);
             const response: CommonResponse<CommonObj> = CommonResponse.success(result);
-            ctx.body = response;
+            if (checkHtml !== true) {
+              return (ctx.body = response);
+            } else {
+              await ctx.render(result as string);
+            }
           } catch (error) {
             ctx.body = CommonResponse.error(error);
           }
@@ -95,7 +112,7 @@ export function getEnv(): string {
  * 加载插件
  * @returns
  */
-export function loadPlugin(app: Application): VoidFunction[] {
+export function loadPlugin(app: Application, config: ServerConfig): VoidFunction[] {
   return [
     BodyParser({
       jsonLimit: '9mb',
@@ -103,6 +120,13 @@ export function loadPlugin(app: Application): VoidFunction[] {
       textLimit: '9mb',
     }),
     new Json(),
+    KoaStatic(config.staticPath),
+    KoaViews(config.viewPath, {
+      extension: 'html',
+      map: {
+        html: 'ejs',
+      },
+    }),
   ];
 }
 

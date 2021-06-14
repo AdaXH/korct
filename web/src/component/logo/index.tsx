@@ -5,6 +5,6 @@ import styles from './styles.less';
 export default memo(() => (
   <div className={styles.logo}>
     <h1>Hello. </h1>
-    <span>Koact</span>
+    <span>Korct</span>
   </div>
 ));

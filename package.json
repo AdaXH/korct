@@ -8,12 +8,14 @@
     "start": "node dist/server.js  --env=production",
     "server": "nodemon server.ts -i web --env=development",
     "lint": "eslint -c .eslintrc.json --ext **/*.ts",
-    "build": "tsc && tsc-alias",
+    "build": "tsc && tsc-alias && npm run build-client",
     "dev": "npm-run-all --parallel server web-server",
     "web-server": "cd web && npm run dev",
     "init": "npm i npm-run-all && npm-run-all --parallel install-server install-web",
     "install-server": "npm install",
-    "install-web": "cd web && npm install"
+    "install-web": "cd web && npm install",
+    "build-server": "tsc && tsc-alias",
+    "build-client": "cd web && npm run build"
   },
   "jest": {
     "extensionsToTreatAsEsm": [
@@ -29,10 +31,13 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.1",
+    "ejs": "^3.1.6",
     "koa": "^2.13.1",
     "koa-body": "^4.2.0",
     "koa-json": "^2.0.2",
     "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^7.0.1",
     "log4js": "^6.3.0",
     "uuid": "^8.3.2"
   },

@@ -1,7 +1,8 @@
-import { Autowired, GetMapping, param, PostMapping, request } from '@/common';
+import { Autowired, GetMapping, param, PostMapping, request, ApiPrefix } from '@/common';
 import { UserService } from '@/service/Userservice';
 import { CommonObj } from '@/typings';
 
+@ApiPrefix('/api')
 export default class Test {
   @Autowired()
   private userService: UserService;

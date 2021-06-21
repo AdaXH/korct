@@ -138,5 +138,3 @@ npm run test
 run build:
 npm run build
 ```
-
-<a href="https://github.com/AdaXH/korct">github</a>

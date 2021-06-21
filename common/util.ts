@@ -83,7 +83,7 @@ export async function loadController(controllerPath: string): Promise<unknown[]>
               property,
             );
             const result: CommonObj | string = await property[fn](...args);
-            const response: CommonResponse<CommonObj> = CommonResponse.success(result);
+            const response = CommonResponse.success(result);
             if (checkHtml !== true) {
               return (ctx.body = response);
             } else {

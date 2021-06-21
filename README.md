@@ -1,10 +1,10 @@
 # korct
 
-快速生成以 koa2 为服务端、 以 react 为前端的项目，开箱即用：<a href="https://www.npmjs.com/package/korct">在 npm 中查看</a>
+快速生成以 koa2 为服务端、 以 react 为前端的项目，开箱即用
 
 [![DeepScan grade](https://deepscan.io/api/teams/13594/projects/17523/branches/404425/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13594&pid=17523&bid=404425)
 ![Build Status](https://travis-ci.org/AdaXH/sites-server-ts.svg?branch=main)
-[![NPM download](https://img.shields.io/npm/dt/korct.svg)](https://www.npmjs.com/package/korct)
+[![NPM download](https://img.shields.io/npm/dt/korct.svg)]
 ![截图](https://bucker-for-sae.oss-cn-hangzhou.aliyuncs.com/githubimg/20210609161240.jpg)
 
 #### server 特点：

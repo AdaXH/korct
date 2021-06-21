@@ -30,19 +30,19 @@ export class CommonResponse<T> {
     this.errorStack = errorStack;
   }
 
-  static success(data: unknown): CommonResponse<unknown> {
-    const instance = new CommonResponse();
+  static success<T>(data: T): Partial<CommonResponse<T> & CommonObj> {
+    const instance = new CommonResponse<T>();
     instance.setData(data);
     instance.setSuccess(true);
     return instance;
   }
 
-  static error(error: CommonObj): CommonResponse<unknown> {
-    const instance = new CommonResponse();
+  static error(error: CommonObj): CommonResponse<null> {
+    const instance = new CommonResponse<null>();
     instance.setErrorMessage(error?.message);
     instance.setErrorCode(error?.errorCode);
     instance.setErrorStack(error?.errorStack);
     instance.setSuccess(false);
-    return instance;
+    return instance as CommonResponse<null>;
   }
 }

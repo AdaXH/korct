@@ -1,6 +1,6 @@
 # korct
 
-快速生成以 koa2 为服务端、 以 react 为前端的项目，开箱即用
+生成以 koa2 为服务端、 以 react 为前端的项目，开箱即用
 
 [![DeepScan grade](https://deepscan.io/api/teams/13594/projects/17523/branches/404425/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13594&pid=17523&bid=404425)
 ![Build Status](https://travis-ci.org/AdaXH/sites-server-ts.svg?branch=main)

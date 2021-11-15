@@ -99,7 +99,7 @@ export class Server extends Application {
       const { port } = this.config.bootConfig[env];
       // this.db.connect(host);
       this.server = this.app.listen(port);
-      logger.info(`web server on ${port} at process: ${process.pid}`);
+      logger.info(`server on ${port} at process: ${process.pid}`);
     });
 
     processInstance.setEventListener([

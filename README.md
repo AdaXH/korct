@@ -5,7 +5,7 @@
 [![DeepScan grade](https://deepscan.io/api/teams/13594/projects/17523/branches/404425/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13594&pid=17523&bid=404425)
 ![Build Status](https://travis-ci.org/AdaXH/sites-server-ts.svg?branch=main)
 ![NPM download](https://img.shields.io/npm/dt/korct.svg)
-![截图](https://bucker-for-sae.oss-cn-hangzhou.aliyuncs.com/githubimg/20210609152619.jpg)
+![截图](https://bucker-for-sae.oss-cn-hangzhou.aliyuncs.com/githubimg/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20211115100302.png)
 
 #### server 特点：
 
@@ -54,19 +54,19 @@
 - 完整的单元测试，jest
 
 ```js
-const request = require("supertest");
+const request = require('supertest');
 
-describe("Demo controller", () => {
-  test("GET /user/1234", done => {
-    request("http://localhost:3000/user")
-      .get("/1234")
-      .set("Accept", "application/json")
+describe('Demo controller', () => {
+  test('GET /user/1234', done => {
+    request('http://localhost:3000/user')
+      .get('/1234')
+      .set('Accept', 'application/json')
       .send()
-      .expect("Content-Type", /json/)
+      .expect('Content-Type', /json/)
       .expect(200)
       .then(response => {
         expect(response.body.success).toEqual(true);
-        expect(response.body.data.userId).toBe("1234");
+        expect(response.body.data.userId).toBe('1234');
         done();
       })
       .catch(err => done(err));
@@ -79,12 +79,12 @@ describe("Demo controller", () => {
 - react 驱动
 
 ```js
-import React from "react";
-import ReactDom from "react-dom";
-import Logo from "./component/logo";
-import Demo from "./component/demo";
-import styles from "./styles.less";
-import "./global.less";
+import React from 'react';
+import ReactDom from 'react-dom';
+import Logo from './component/logo';
+import Demo from './component/demo';
+import styles from './styles.less';
+import './global.less';
 
 const App: React.FC<any> = () => {
   return (
@@ -95,7 +95,7 @@ const App: React.FC<any> = () => {
   );
 };
 
-ReactDom.render(<App />, document.querySelector("#root"));
+ReactDom.render(<App />, document.querySelector('#root'));
 ```
 
 - 可配置的 webpack
@@ -110,7 +110,7 @@ ReactDom.render(<App />, document.querySelector("#root"));
 - class : 运行时启动
 - web : react 前端代码
 - test : 单元测试目录
-- dist : 最终输出目录，打包后的server和web文件
+- dist : 最终输出目录，打包后的 server 和 web 文件
 
 目前已完成的功能/模块：
 

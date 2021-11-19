@@ -1,7 +1,6 @@
 import { Context } from 'koa';
 
 type CommonObj = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [x?: string]: any;
 };
 

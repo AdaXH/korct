@@ -5,17 +5,17 @@ import { getEnv, ENV } from '@/common';
 const isJestEnv = getEnv() === ENV.JEST;
 
 export const logger = {
-  info: (data?: unknown): void => {
+  info: (data?: any): void => {
     if (isJestEnv) return;
     console.log(`${chalk.bgBlue('[INFO]')} ${chalk.whiteBright(logData(data))}`);
   },
-  warning: (data: unknown): void => {
+  warning: (data: any): void => {
     if (isJestEnv) return;
     console.log(
       `${chalk.bgYellowBright('[WARAING]')} ${chalk.whiteBright(logData(data))}`,
     );
   },
-  error: (data: unknown): void => {
+  error: (data: any): void => {
     if (isJestEnv) return;
     console.log(
       `${chalk.bgRgb(245, 115, 115).black('[ERROR]')} ${chalk.whiteBright(
@@ -25,7 +25,7 @@ export const logger = {
   },
 };
 
-function logData(data: unknown): string {
+function logData(data: any): string {
   if (data instanceof Object) return JSON.stringify(data);
   return data as string;
 }

@@ -37,7 +37,7 @@ export class CommonResponse<T> {
     return instance;
   }
 
-  static error(error: CommonObj): CommonResponse<null> {
+  static error(error: Error & CommonObj): CommonResponse<null> {
     const instance = new CommonResponse<null>();
     instance.setErrorMessage(error?.message);
     instance.setErrorCode(error?.errorCode);

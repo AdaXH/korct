@@ -11,16 +11,12 @@ export const logger = {
   },
   warning: (data: any): void => {
     if (isJestEnv) return;
-    console.log(
-      `${chalk.bgYellowBright('[WARAING]')} ${chalk.whiteBright(logData(data))}`,
-    );
+    console.log(`${chalk.bgYellowBright('[WARAING]')} ${chalk.whiteBright(logData(data))}`);
   },
   error: (data: any): void => {
     if (isJestEnv) return;
     console.log(
-      `${chalk.bgRgb(245, 115, 115).black('[ERROR]')} ${chalk.whiteBright(
-        logData(data),
-      )}`,
+      `${chalk.bgRgb(245, 115, 115).black('[ERROR]')} ${chalk.whiteBright(logData(data))}`,
     );
   },
 };

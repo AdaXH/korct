@@ -26,10 +26,15 @@ export class CommonResponse<T> {
     this.errorCode = errorCode;
   }
 
-  public setErrorStack(errorStack: CommonObj): void {
+  public setErrorStack<T extends Error>(errorStack: T): void {
     this.errorStack = errorStack;
   }
 
+  /**
+   * 成功相应
+   * @param data
+   * @returns {T}
+   */
   static success<T>(data: T): Partial<CommonResponse<T> & CommonObj> {
     const instance = new CommonResponse<T>();
     instance.setData(data);
@@ -37,12 +42,17 @@ export class CommonResponse<T> {
     return instance;
   }
 
+  /**
+   * 失败响应
+   * @param error
+   * @returns {CommonResponse<null>}
+   */
   static error(error: Error & CommonObj): CommonResponse<null> {
     const instance = new CommonResponse<null>();
     instance.setErrorMessage(error?.message);
     instance.setErrorCode(error?.errorCode);
     instance.setErrorStack(error?.errorStack);
     instance.setSuccess(false);
-    return instance as CommonResponse<null>;
+    return instance;
   }
 }

@@ -19,7 +19,7 @@ export class Server extends Application {
   private controllers: unknown[];
   private router: Router = new Router();
   private plugins: VoidFunction[];
-  private middlewares: Promise<VoidFunction>[];
+  private middlewares: Promise<Application.Middleware>[];
   public server: any;
 
   constructor(config: ServerConfig) {
@@ -27,6 +27,9 @@ export class Server extends Application {
     this.config = config;
   }
 
+  /**
+   * 初始化server，加载路由、中间件
+   */
   async init(): Promise<void> {
     this.app = new Application();
     this.app.keys = ['some secret for session'];

@@ -18,7 +18,7 @@
     /**
      * 依赖注入，注入userService
      */
-    @Autowired()
+    @Inject()
     private userService: UserService;
 
     /**

@@ -37,9 +37,7 @@ export async function loadController(controllerPath: string): Promise<unknown[]>
       const { method, url } = Reflect.getMetadata(fn, property);
       const prefix = Reflect.getMetadata(API_PREFIX, Controller.default) || '';
       const targetUrl = `${prefix}${url}`;
-      logger.info(
-        `register route: ${chalk.blue(`[${method}]`)} ${chalk.green(targetUrl)} `,
-      );
+      logger.info(`register route: ${chalk.blue(`[${method}]`)} ${chalk.green(targetUrl)} `);
       controllers.push({
         method: method.toLowerCase(),
         url: prefix ? targetUrl : url,
@@ -78,10 +76,7 @@ export async function loadController(controllerPath: string): Promise<unknown[]>
               args[requestIndex] = body;
             }
             // 是否是渲染html
-            const checkHtml = Reflect.getMetadata(
-              `${RENDER_HTML_META_KEY_PREFIX}-${fn}`,
-              property,
-            );
+            const checkHtml = Reflect.getMetadata(`${RENDER_HTML_META_KEY_PREFIX}-${fn}`, property);
             const result: CommonObj | string = await property[fn](...args);
             const response = CommonResponse.success(result);
             if (checkHtml !== true) {
@@ -134,9 +129,7 @@ export function loadPlugin(app: Application, config: ServerConfig): VoidFunction
  * 加载中间价
  * @param middlewarePath
  */
-export async function loadMiddleware(
-  middlewarePath: string,
-): Promise<Promise<VoidFunction>[]> {
+export async function loadMiddleware(middlewarePath: string): Promise<Promise<VoidFunction>[]> {
   const list = await fs.readdirSync(middlewarePath);
   return await list.map(async item => {
     const middlewareFile = await import(`${middlewarePath}/${item}`);

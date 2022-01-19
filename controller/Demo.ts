@@ -1,10 +1,10 @@
-import { Autowired, GetMapping, param, PostMapping, request, ApiPrefix } from '@/common';
+import { Inject, GetMapping, param, PostMapping, request, ApiPrefix } from '@/common';
 import { UserService } from '@/service/Userservice';
 import { CommonObj } from '@/typings';
 
 @ApiPrefix('/api')
 export default class Test {
-  @Autowired()
+  @Inject()
   private userService: UserService;
 
   /**

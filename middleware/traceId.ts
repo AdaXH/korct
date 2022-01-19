@@ -1,12 +1,11 @@
 import { CommonResponse } from '@/class';
-import { CommonObj } from '@/typings';
+import { DefaultContext } from 'koa';
 import { v4 as uuid } from 'uuid';
 
-export default async function (ctx: CommonObj, next: VoidFunction): Promise<void> {
+export default async function (ctx: DefaultContext, next: VoidFunction): Promise<void> {
   try {
     await next();
     const { body } = ctx;
-    console.log('body', body);
     const traceId = uuid();
     ctx.set('Trace-id', traceId);
     if (!body) {

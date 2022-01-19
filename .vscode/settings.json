@@ -1,0 +1,47 @@
+{
+  "explorer.confirmDelete": false,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "git.enableSmartCommit": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "explorer.confirmDragAndDrop": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "timeline.excludeSources": [],
+  "git.ignoreRebaseWarning": true,
+  "author-generator.updateOnSave": true,
+  "files.associations": {
+    "*.vue": "vue"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "editor.formatOnSave": true,
+  "appworks.materialSources": [],
+  "eslint.alwaysShowStatus": true,
+  "eslint.validate": ["javascript", "typescript", "javascriptreact", "typescriptreact"],
+  "cSpell.words": ["precaching", "Vite"]
+}

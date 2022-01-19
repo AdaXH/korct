@@ -23,7 +23,7 @@ export function Controller(options?: { method?: string; url?: string | RegExp })
 /**
  * 依赖注入
  */
-export function Autowired(): (target: unknown, propertyKey: string) => void {
+export function Inject(): (target: unknown, propertyKey: string) => void {
   return (target: unknown, propertyKey: string): void => {
     const propertyType = Reflect.getMetadata('design:type', target, propertyKey);
     let instance = instanceMap.getInstance(propertyType);
@@ -39,9 +39,7 @@ export function Autowired(): (target: unknown, propertyKey: string) => void {
  * get
  * @param url string
  */
-export function GetMapping(
-  url: string | RegExp,
-): (target: unknown, propertyName: string) => void {
+export function GetMapping(url: string | RegExp): (target: unknown, propertyName: string) => void {
   return Controller({ method: 'GET', url });
 }
 
@@ -49,9 +47,7 @@ export function GetMapping(
  * post
  * @param url string
  */
-export function PostMapping(
-  url: string,
-): (target: unknown, propertyName: string) => void {
+export function PostMapping(url: string): (target: unknown, propertyName: string) => void {
   return Controller({ method: 'POST', url });
 }
 
@@ -92,11 +88,7 @@ export function queryObj(): DecratorReturn {
  */
 export function queryItem(queryItemName: string): DecratorReturn {
   return (target: unknown, propertyName: string, index?: number) => {
-    Reflect.defineMetadata(
-      QUERY_ITEM_META_KEY,
-      { queryItemName, index },
-      target[propertyName],
-    );
+    Reflect.defineMetadata(QUERY_ITEM_META_KEY, { queryItemName, index }, target[propertyName]);
   };
 }
 
@@ -114,10 +106,6 @@ export function request() {
  */
 export function renderHtml() {
   return (target: unknown, propertyName: string): void => {
-    Reflect.defineMetadata(
-      `${RENDER_HTML_META_KEY_PREFIX}-${propertyName}`,
-      true,
-      target,
-    );
+    Reflect.defineMetadata(`${RENDER_HTML_META_KEY_PREFIX}-${propertyName}`, true, target);
   };
 }

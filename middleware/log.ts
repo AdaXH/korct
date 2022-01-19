@@ -46,9 +46,7 @@ export default async function (ctx: Context, next: VoidFunction): Promise<void> 
   const targetLogger = success ? traceLogger : errorLogger;
   const responseStr = JSON.stringify(responseBody);
   const traceId = responseBody.traceId || '';
-  const log = `${chalk.bgBlue(traceId)} ${chalk.blue(method)} ${chalk.green(
-    url,
-  )} ${chalk.green(
+  const log = `${chalk.bgBlue(traceId)} ${chalk.blue(method)} ${chalk.green(url)} ${chalk.green(
     Date.now() - start + 'ms',
   )} ${`req: ${reqString} res: ${responseStr}`} `;
   targetLogger.fatal(log);

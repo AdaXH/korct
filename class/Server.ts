@@ -1,4 +1,5 @@
 import Application, { Context, DefaultContext, ParameterizedContext } from 'koa';
+import { Server as HttpServer } from 'http';
 import {
   loadController,
   getEnv,
@@ -12,15 +13,16 @@ import { ServerConfig } from '@/typings';
 import { Process } from '.';
 import Router from 'koa-router';
 import { IncomingMessage, ServerResponse } from 'http';
+import { Controller } from '@/common/types';
 
 export class Server extends Application {
   private config: ServerConfig;
   public app: Application;
-  private controllers: unknown[];
+  private controllers: Controller[];
   private router: Router = new Router();
-  private plugins: VoidFunction[];
+  private plugins: Application.Middleware[];
   private middlewares: Promise<Application.Middleware>[];
-  public server: any;
+  public server: HttpServer;
 
   constructor(config: ServerConfig) {
     super();

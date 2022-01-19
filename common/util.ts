@@ -16,15 +16,16 @@ import {
   RENDER_HTML_META_KEY_PREFIX,
 } from '.';
 import { API_PREFIX } from './constant';
+import { Controller } from './types';
 
 /**
  * 加载controller文件夹
  * @param controllerPath
  * @returns
  */
-export async function loadController(controllerPath: string): Promise<unknown[]> {
+export async function loadController(controllerPath: string): Promise<Controller[]> {
   const list = await fs.readdirSync(controllerPath);
-  const controllers = [];
+  const controllers: Controller[] = [];
   await list.forEach(async item => {
     if (item === 'BaseController.ts') return;
     const Controller = await import(`${controllerPath}/${item}`);
@@ -80,7 +81,7 @@ export async function loadController(controllerPath: string): Promise<unknown[]>
             const result: CommonObj | string = await property[fn](...args);
             const response = CommonResponse.success(result);
             if (checkHtml !== true) {
-              return (ctx.body = response);
+              ctx.body = response;
             } else {
               await ctx.render(result as string);
             }
@@ -107,7 +108,7 @@ export function getEnv(): string {
  * 加载插件
  * @returns
  */
-export function loadPlugin(app: Application, config: ServerConfig): VoidFunction[] {
+export function loadPlugin(app: Application, config: ServerConfig): Application.Middleware[] {
   return [
     BodyParser({
       jsonLimit: '9mb',

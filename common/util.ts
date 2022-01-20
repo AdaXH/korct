@@ -34,9 +34,9 @@ export async function loadController(controllerPath: string): Promise<Controller
     const fnNames = Object.getOwnPropertyNames(property).filter(
       item => item !== 'constructor' && typeof property[item] === 'function',
     );
+    const prefix = Reflect.getMetadata(API_PREFIX, Controller.default) || '';
     fnNames.forEach(fn => {
       const { method, url } = Reflect.getMetadata(fn, property);
-      const prefix = Reflect.getMetadata(API_PREFIX, Controller.default) || '';
       const targetUrl = `${prefix}${url}`;
       logger.info(`register route: ${chalk.blue(`[${method}]`)} ${chalk.green(targetUrl)} `);
       controllers.push({

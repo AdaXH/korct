@@ -16,7 +16,8 @@
     "install-server": "npm install",
     "install-web": "cd web && npm install",
     "build-server": "tsc && tsc-alias",
-    "build-client": "cd web && npm run build"
+    "build-client": "cd web && npm run build",
+    "ci": "npm run lint"
   },
   "jest": {
     "extensionsToTreatAsEsm": [

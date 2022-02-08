@@ -9,13 +9,13 @@ log4js.configure({
   pm2InstanceVar: 'NODE_APP_INSTANCE',
   appenders: {
     trace: {
-      type: 'datefile',
+      type: 'dateFile',
       filename: 'logs/trace.log',
       maxLogSize: '2048K',
       daysToKeep: 2,
     },
     error: {
-      type: 'datefile',
+      type: 'dateFile',
       filename: 'logs/error.log',
       maxLogSize: '2048K',
       daysToKeep: 2,

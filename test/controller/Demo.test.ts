@@ -5,7 +5,7 @@ preTest();
 
 describe('Demo controller', () => {
   test('GET /user/1234', done => {
-    request('http://localhost:3000/user')
+    request('http://localhost:3000/api/user')
       .get('/1234')
       .set('Accept', 'application/json')
       .send()

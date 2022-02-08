@@ -3,7 +3,7 @@
 生成以 koa2 为服务端、 以 react 为前端的项目，开箱即用
 
 [![DeepScan grade](https://deepscan.io/api/teams/13594/projects/17523/branches/404425/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13594&pid=17523&bid=404425)
-![Build Status](https://travis-ci.org/AdaXH/sites-server-ts.svg?branch=main)
+[![Node.js CI](https://github.com/AdaXH/korct/actions/workflows/node.js.yml/badge.svg)](https://github.com/AdaXH/korct/actions/workflows/node.js.yml)
 ![NPM download](https://img.shields.io/npm/dt/korct.svg)
 ![截图](https://bucker-for-sae.oss-cn-hangzhou.aliyuncs.com/githubimg/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20211115100302.png)
 

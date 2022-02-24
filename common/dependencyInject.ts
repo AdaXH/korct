@@ -8,7 +8,7 @@ import {
   API_PREFIX,
 } from '.';
 
-type DecratorReturn = (target: unknown, propertyName: string, index?: number) => void;
+type DecratorReturn<T = any> = (target: T, propertyName?: string, index?: any) => T;
 
 /**
  * 路由反射
@@ -23,15 +23,15 @@ export function Controller(options?: { method?: string; url?: string | RegExp })
 /**
  * 依赖注入
  */
-export function Inject(): (target: unknown, propertyKey: string) => void {
-  return (target: unknown, propertyKey: string): void => {
-    const propertyType = Reflect.getMetadata('design:type', target, propertyKey);
+export function Inject(): DecratorReturn {
+  return (target: unknown, propertyName: string): void => {
+    const propertyType = Reflect.getMetadata('design:type', target, propertyName);
     let instance = instanceMap.getInstance(propertyType);
     if (!instance) {
       instance = new propertyType();
       instanceMap.setInstance(propertyType, instance);
     }
-    target[propertyKey] = instance;
+    target[propertyName] = instance;
   };
 }
 
@@ -39,7 +39,7 @@ export function Inject(): (target: unknown, propertyKey: string) => void {
  * get
  * @param url string
  */
-export function GetMapping(url: string | RegExp): (target: unknown, propertyName: string) => void {
+export function GetMapping(url: string | RegExp): DecratorReturn {
   return Controller({ method: 'GET', url });
 }
 
@@ -47,7 +47,7 @@ export function GetMapping(url: string | RegExp): (target: unknown, propertyName
  * post
  * @param url string
  */
-export function PostMapping(url: string): (target: unknown, propertyName: string) => void {
+export function PostMapping(url: string): DecratorReturn {
   return Controller({ method: 'POST', url });
 }
 
@@ -56,8 +56,8 @@ export function PostMapping(url: string): (target: unknown, propertyName: string
  * @param prefix
  * @returns
  */
-export function ApiPrefix(prefix: string) {
-  return (target: any) => {
+export function ApiPrefix<T = any>(prefix: string): DecratorReturn<T> {
+  return (target: T) => {
     Reflect.defineMetadata(API_PREFIX, prefix, target);
     return target;
   };
@@ -95,7 +95,7 @@ export function queryItem(queryItemName: string): DecratorReturn {
 /**
  * 注入request
  */
-export function request() {
+export function request(): DecratorReturn {
   return (target: unknown, propertyName: string, index?: number): void => {
     Reflect.defineMetadata(BODY_META_KEY, index, target[propertyName]);
   };
@@ -104,7 +104,7 @@ export function request() {
 /**
  * 渲染html
  */
-export function renderHtml() {
+export function renderHtml(): DecratorReturn {
   return (target: unknown, propertyName: string): void => {
     Reflect.defineMetadata(`${RENDER_HTML_META_KEY_PREFIX}-${propertyName}`, true, target);
   };

@@ -2,7 +2,7 @@ import { Inject, GetMapping, param, PostMapping, request, ApiPrefix } from '@/co
 import { UserService } from '@/service/Userservice';
 import { CommonObj } from '@/typings';
 
-@ApiPrefix('/api')
+@ApiPrefix<typeof Test>('/api')
 export default class Test {
   @Inject()
   private userService: UserService;

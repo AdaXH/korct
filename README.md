@@ -13,7 +13,7 @@
 
 ```js
 
-  @Inject('/api')
+  @ApiPrefix('/api')
   class UserController {
     /**
      * 依赖注入，注入userService

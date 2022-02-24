@@ -24,6 +24,9 @@ export class BizError<E> extends Error {
   }
 }
 
+/**
+ * 错误枚举映射
+ */
 export enum ErrorCodeEnum {
   'NOT_FOUND' = 'NOT_FOUND',
   'ARGUMENUT_ERROR' = 'ARGUMENUT_ERROR',
